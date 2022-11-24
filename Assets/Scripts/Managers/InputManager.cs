@@ -99,20 +99,18 @@ namespace Managers
                 //});
             }
 
-            if (Input.GetMouseButtonUp(0))
-            {
-                InputSignals.Instance.onInputDragged?.Invoke(new InputParams()
-                {
-                    XValue = 0,
-                    ZValue = 0
-                });
-            }
+            //if (Input.GetMouseButtonUp(0))
+            //{
+            //    InputSignals.Instance.onInputDragged?.Invoke();
+            //}
 
         }
 
         public void OnButtonClicked(int direction)
         {
             Debug.Log(direction);
+            InputSignals.Instance.onClicked?.Invoke(direction);
+
         }
 
         private void OnEnableInput()
