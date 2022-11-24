@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CD_Player
   m_EditorClassIdentifier: 
   Data:
-    ForceX: 3
+    ForceX: 1.5
     ForceY: 3
