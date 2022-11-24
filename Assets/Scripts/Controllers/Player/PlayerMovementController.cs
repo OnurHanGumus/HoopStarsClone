@@ -85,7 +85,6 @@ namespace Controllers
             _isOnRight = true;
             transform.position = Vector2.zero;
             _rig.velocity = Vector2.zero;
-
         }
     }
 }

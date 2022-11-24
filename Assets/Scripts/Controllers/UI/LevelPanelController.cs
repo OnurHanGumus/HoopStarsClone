@@ -14,10 +14,10 @@ public class LevelPanelController : MonoBehaviour
     #region Public Variables
     #endregion
     #region SerializeField Variables
-    [SerializeField] private TextMeshProUGUI scoreTxt;
+    [SerializeField] private TextMeshPro scoreText, timerText;
+    [SerializeField] private int time = 60, currentTime = 60;
     #endregion
     #region Private Variables
-
 
     #endregion
     #endregion
@@ -30,16 +30,35 @@ public class LevelPanelController : MonoBehaviour
 
 
     }
+
+    private IEnumerator Timer()
+    {
+        timerText.text = "00:" + --currentTime;
+        yield return new WaitForSeconds(1f);
+        if (currentTime == 0)
+        {
+            StopAllCoroutines();
+            LevelSignals.Instance.onTimeUp?.Invoke();
+        }
+        StartCoroutine(Timer());
+    }
     public void OnScoreUpdateText(ScoreTypeEnums type, int score)
     {
         if (type.Equals(ScoreTypeEnums.Score))
         {
-            scoreTxt.text = score.ToString();
+            scoreText.text = score.ToString();
         }
     }
 
     public void OnRestartLevel()
     {
-        scoreTxt.text = 0.ToString();
+        scoreText.text = 0.ToString();
     }
+
+    public void OnPlay()
+    {
+        StartCoroutine(Timer());
+    }
+
+   
 }
