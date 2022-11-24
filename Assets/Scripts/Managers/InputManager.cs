@@ -110,6 +110,11 @@ namespace Managers
 
         }
 
+        public void OnButtonClicked(int direction)
+        {
+            Debug.Log(direction);
+        }
+
         private void OnEnableInput()
         {
             isReadyForTouch = true;
