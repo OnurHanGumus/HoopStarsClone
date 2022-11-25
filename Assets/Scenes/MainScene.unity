@@ -8320,6 +8320,7 @@ MonoBehaviour:
   - {fileID: 1728649850}
   - {fileID: 790265665}
   slider: {fileID: 593599234}
+  sliderImage: {fileID: 762709119}
   stageNum: 0
 --- !u!225 &1994952899310298036
 CanvasGroup:

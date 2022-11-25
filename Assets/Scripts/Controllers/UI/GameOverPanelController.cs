@@ -20,6 +20,7 @@ public class GameOverPanelController : MonoBehaviour
     [SerializeField] private GameObject[] crowns;
     [SerializeField] private Image[] stageNodes;
     [SerializeField] private Slider slider;
+    [SerializeField] private Image sliderImage;
 
     [SerializeField] private int stageNum = 0;
 
@@ -81,6 +82,8 @@ public class GameOverPanelController : MonoBehaviour
         {
             i.SetActive(false);
         }
+        sliderImage.color = _data.SuccessStageColor;
+
     }
 
     public void OnStageSuccessFul()
@@ -132,6 +135,8 @@ public class GameOverPanelController : MonoBehaviour
         {
             stageNodes[i].color = _data.FailStageColor;
         }
+        sliderImage.color = _data.FailStageColor;
+
         successPanel.SetActive(false);
         failPanel.SetActive(true);
     }
