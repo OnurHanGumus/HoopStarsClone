@@ -67,8 +67,7 @@ namespace Controllers
 
             if (_rig.position.y >= _data.MaxVerticalPoint)
             {
-                _rig.velocity = new Vector3(_rig.velocity.x, 0);
-                _rig.position = new Vector3(_rig.velocity.x, _data.MaxVerticalPoint - 0.1f);
+                _rig.position = new Vector3(_rig.position.x, _data.MaxVerticalPoint - 0.1f);
 
             }
         }

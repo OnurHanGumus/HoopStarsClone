@@ -33,14 +33,26 @@ public class LevelPanelController : MonoBehaviour
 
     private IEnumerator Timer()
     {
-        timerText.text = "00:" + --currentTime;
+        --currentTime;
+        if (currentTime.ToString().Length == 1)
+        {
+            timerText.text = "00:0" + currentTime;
+        }
+        else
+        {
+            timerText.text = "00:" + currentTime;
+        }
         yield return new WaitForSeconds(1f);
-        if (currentTime == 0)
+
+        if (currentTime <= 0)
         {
             StopAllCoroutines();
             LevelSignals.Instance.onTimeUp?.Invoke();
         }
-        StartCoroutine(Timer());
+        else
+        {
+            StartCoroutine(Timer());
+        }
     }
     public void OnScoreUpdateText(ScoreTypeEnums type, int score)
     {

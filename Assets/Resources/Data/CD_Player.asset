@@ -16,4 +16,4 @@ MonoBehaviour:
     ForceX: 1.5
     ForceY: 3
     MaxHorizontalPoint: 2
-    MaxVerticalPoint: 6
+    MaxVerticalPoint: 6.5
