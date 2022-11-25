@@ -59,6 +59,7 @@ namespace Managers
             CoreGameSignals.Instance.onRestartLevel += OnResetLevel;
 
             LevelSignals.Instance.onBasket += OnBasket;
+            LevelSignals.Instance.onTimeUp += _movementController.OnTimeUp;
         }
 
         private void UnsubscribeEvents()
@@ -69,6 +70,7 @@ namespace Managers
             CoreGameSignals.Instance.onRestartLevel -= OnResetLevel;
 
             LevelSignals.Instance.onBasket -= OnBasket;
+            LevelSignals.Instance.onTimeUp -= _movementController.OnTimeUp;
         }
 
 
@@ -89,10 +91,6 @@ namespace Managers
             GetTargetTransform();
         }
 
-        private void OnTimeUp()
-        {
-            IsTimeUp = true;
-        }
 
         private void OnBasket()
         {

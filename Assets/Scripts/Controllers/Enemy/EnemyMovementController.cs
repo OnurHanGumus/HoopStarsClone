@@ -80,7 +80,10 @@ public class EnemyMovementController : MonoBehaviour
         _rig.useGravity = true;
         StartCoroutine(ForceDelay());
     }
-
+    public void OnTimeUp()
+    {
+        StopAllCoroutines();
+    }
     public void OnReset()
     {
         _rig.useGravity = false;
