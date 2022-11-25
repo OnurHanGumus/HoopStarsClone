@@ -46,7 +46,6 @@ public class LevelPanelController : MonoBehaviour
 
         if (currentTime <= 0)
         {
-            StopAllCoroutines();
             LevelSignals.Instance.onTimeUp?.Invoke();
         }
         else
@@ -54,6 +53,7 @@ public class LevelPanelController : MonoBehaviour
             StartCoroutine(Timer());
         }
     }
+
     public void OnScoreUpdateText(ScoreTypeEnums type, int score)
     {
         if (type.Equals(ScoreTypeEnums.Score))

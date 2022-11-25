@@ -58,7 +58,7 @@ namespace Managers
 
             CoreGameSignals.Instance.onPlay += _movementController.OnPlay;
             CoreGameSignals.Instance.onPlay += OnPlay;
-            CoreGameSignals.Instance.onLevelFailed += _movementController.OnPlayerDie;
+            CoreGameSignals.Instance.onStageFailed += _movementController.OnPlayerDie;
             CoreGameSignals.Instance.onRestartLevel += _movementController.OnReset;
             CoreGameSignals.Instance.onRestartLevel += OnResetLevel;
 
@@ -72,7 +72,7 @@ namespace Managers
 
             CoreGameSignals.Instance.onPlay -= _movementController.OnPlay;
             CoreGameSignals.Instance.onPlay -= OnPlay;
-            CoreGameSignals.Instance.onLevelFailed -= _movementController.OnPlayerDie;
+            CoreGameSignals.Instance.onStageFailed -= _movementController.OnPlayerDie;
             CoreGameSignals.Instance.onRestartLevel -= _movementController.OnReset;
             CoreGameSignals.Instance.onRestartLevel -= OnResetLevel;
 

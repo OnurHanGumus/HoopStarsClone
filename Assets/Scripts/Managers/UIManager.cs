@@ -34,10 +34,12 @@ namespace Managers
             UISignals.Instance.onSetChangedText += levelPanelController.OnScoreUpdateText;
             CoreGameSignals.Instance.onPlay += OnPlay;
             CoreGameSignals.Instance.onPlay += levelPanelController.OnPlay;
-            CoreGameSignals.Instance.onLevelFailed += OnLevelFailed;
-            CoreGameSignals.Instance.onLevelSuccessful += OnLevelSuccessful;
+            CoreGameSignals.Instance.onStageFailed += OnLevelFailed;
+            CoreGameSignals.Instance.onStageSuccessful += OnLevelSuccessful;
+            CoreGameSignals.Instance.onStageSuccessful += gameOverPanelController.OnStageSuccessFul;
             CoreGameSignals.Instance.onRestartLevel += levelPanelController.OnRestartLevel;
             ScoreSignals.Instance.onHighScoreChanged += highScorePanelController.OnUpdateText;
+
         }
 
         private void UnsubscribeEvents()
@@ -47,8 +49,9 @@ namespace Managers
             UISignals.Instance.onSetChangedText -= levelPanelController.OnScoreUpdateText;
             CoreGameSignals.Instance.onPlay -= OnPlay;
             CoreGameSignals.Instance.onPlay -= levelPanelController.OnPlay;
-            CoreGameSignals.Instance.onLevelFailed -= OnLevelFailed;
-            CoreGameSignals.Instance.onLevelSuccessful -= OnLevelSuccessful;
+            CoreGameSignals.Instance.onStageFailed -= OnLevelFailed;
+            CoreGameSignals.Instance.onStageSuccessful -= OnLevelSuccessful;
+            CoreGameSignals.Instance.onStageSuccessful -= gameOverPanelController.OnStageSuccessFul;
             CoreGameSignals.Instance.onRestartLevel -= levelPanelController.OnRestartLevel;
             ScoreSignals.Instance.onHighScoreChanged -= highScorePanelController.OnUpdateText;
         }
@@ -80,12 +83,13 @@ namespace Managers
         {
             UISignals.Instance.onClosePanel?.Invoke(UIPanels.LevelPanel);
             UISignals.Instance.onOpenPanel?.Invoke(UIPanels.GameOverPanel);
-            gameOverPanelController.ShowThePanel();
+            //gameOverPanelController.ShowThePanel();
         }
 
         private void OnLevelSuccessful()
         {
-
+            UISignals.Instance.onClosePanel?.Invoke(UIPanels.LevelPanel);
+            UISignals.Instance.onOpenPanel?.Invoke(UIPanels.GameOverPanel);
         }
 
         public void Play()

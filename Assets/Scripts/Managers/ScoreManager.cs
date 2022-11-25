@@ -29,13 +29,21 @@ namespace Managers
 
         #region Private Variables
 
-        private int _score;
+        private int _playerScore;
+        private int _enemyScore;
         [ShowInInspector]
-        public int Score
+        public int PlayerScore
         {
-            get { return _score; }
-            set { _score = value; }
+            get { return _playerScore; }
+            set { _playerScore = value; }
         }
+
+        public int EnemyScore
+        {
+            get { return _enemyScore; }
+            set { _enemyScore = value; }
+        }
+
 
 
         #endregion
@@ -63,6 +71,7 @@ namespace Managers
             ScoreSignals.Instance.onScoreDecrease += OnScoreDecrease;
             ScoreSignals.Instance.onGetScore += OnGetScore;
             CoreGameSignals.Instance.onRestartLevel += OnRestartLevel;
+            LevelSignals.Instance.onTimeUp += OnTimeUp;
         }
 
         private void UnsubscribeEvents()
@@ -71,6 +80,7 @@ namespace Managers
             ScoreSignals.Instance.onScoreDecrease -= OnScoreDecrease;
             ScoreSignals.Instance.onGetScore -= OnGetScore;
             CoreGameSignals.Instance.onRestartLevel -= OnRestartLevel;
+            LevelSignals.Instance.onTimeUp -= OnTimeUp;
         }
 
         private void OnDisable()
@@ -82,8 +92,8 @@ namespace Managers
 
         private void OnScoreIncrease(ScoreTypeEnums type, int amount)
         {
-            Score += amount;
-            UISignals.Instance.onSetChangedText?.Invoke(type, Score);
+            PlayerScore += amount;
+            UISignals.Instance.onSetChangedText?.Invoke(type, PlayerScore);
         }
 
         private void OnScoreDecrease(ScoreTypeEnums type, int amount)
@@ -94,12 +104,25 @@ namespace Managers
 
         private int OnGetScore()
         {
-            return Score;
+            return PlayerScore;
         }
 
         private void OnRestartLevel()
         {
-            Score = 0;
+            PlayerScore = 0;
+        }
+
+        private void OnTimeUp()
+        {
+            if (PlayerScore >= EnemyScore)
+            {
+                CoreGameSignals.Instance.onStageSuccessful?.Invoke();
+
+            }
+            else
+            {
+                CoreGameSignals.Instance.onStageFailed?.Invoke();
+            }
         }
     }
 }
