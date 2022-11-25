@@ -7,5 +7,7 @@ namespace Data.ValueObject
     public class PlayerData
     {
         public float ForceX = 10, ForceY = 10;
+        public float MaxHorizontalPoint = 10;
+        public float MaxVerticalPoint = 5;
     }
 }

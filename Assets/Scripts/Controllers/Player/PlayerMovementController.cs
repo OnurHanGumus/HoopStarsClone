@@ -43,6 +43,8 @@ namespace Controllers
 
         private void FixedUpdate()
         {
+            ClampControl();
+
             if (_isNotStarted)
             {
                 return;
@@ -56,7 +58,20 @@ namespace Controllers
             }
         }
 
+        private void ClampControl()
+        {
+            if ((!_isOnRight && _rig.position.x <= -_data.MaxHorizontalPoint) || (_isOnRight && _rig.position.x >= _data.MaxHorizontalPoint))
+            {
+                _rig.velocity = new Vector3(0, _rig.velocity.y);
+            }
 
+            if (_rig.position.y >= _data.MaxVerticalPoint)
+            {
+                _rig.velocity = new Vector3(_rig.velocity.x, 0);
+                _rig.position = new Vector3(_rig.velocity.x, _data.MaxVerticalPoint - 0.1f);
+
+            }
+        }
 
         public void OnClicked(int direction)
         {
