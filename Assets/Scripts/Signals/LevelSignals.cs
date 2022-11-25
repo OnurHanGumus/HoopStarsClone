@@ -13,5 +13,6 @@ namespace Signals
         public UnityAction onTimeUp = delegate { };
         public UnityAction onTournamentWon = delegate { };
         public UnityAction onFinalStage = delegate { };
+        public UnityAction onBasket = delegate { };
     }
 }

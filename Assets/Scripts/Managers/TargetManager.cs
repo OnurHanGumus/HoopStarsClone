@@ -8,15 +8,15 @@ using Enums;
 using Signals;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Managers
 {
-    public class PlayerManager : MonoBehaviour
+    public class TargetManager : MonoBehaviour
     {
         #region Self Variables
 
         #region Public Variables
-        public bool IsTimeUp = false;
 
         #endregion
 
@@ -25,8 +25,8 @@ namespace Managers
         #endregion
 
         #region Private Variables
-        private PlayerData _data;
-        private PlayerMovementController _movementController;
+        private TargetData _data;
+        private bool _isFinalStage = false;
         #endregion
 
         #endregion
@@ -38,11 +38,10 @@ namespace Managers
 
         private void Init()
         {
-
             _data = GetData();
-            _movementController = GetComponent<PlayerMovementController>();
+
         }
-        public PlayerData GetData() => Resources.Load<CD_Player>("Data/CD_Player").Data;
+        public TargetData GetData() => Resources.Load<CD_Target>("Data/CD_Target").Data;
 
         #region Event Subscription
 
@@ -53,30 +52,20 @@ namespace Managers
 
         private void SubscribeEvents()
         {
-            InputSignals.Instance.onClicked += _movementController.OnClicked;
+            LevelSignals.Instance.onFinalStage += OnFinalStage;
+            LevelSignals.Instance.onTimeUp += OnTimeUp;
+            LevelSignals.Instance.onBasket += OnBasket;
 
-
-            CoreGameSignals.Instance.onPlay += _movementController.OnPlay;
-            CoreGameSignals.Instance.onPlay += OnPlay;
-            CoreGameSignals.Instance.onStageFailed += _movementController.OnPlayerDie;
-            CoreGameSignals.Instance.onRestartLevel += _movementController.OnReset;
             CoreGameSignals.Instance.onRestartLevel += OnResetLevel;
-
         }
 
         private void UnsubscribeEvents()
         {
+            LevelSignals.Instance.onFinalStage -= OnFinalStage;
+            LevelSignals.Instance.onTimeUp -= OnTimeUp;
+            LevelSignals.Instance.onBasket -= OnBasket;
 
-            InputSignals.Instance.onClicked -= _movementController.OnClicked;
-
-
-            CoreGameSignals.Instance.onPlay -= _movementController.OnPlay;
-            CoreGameSignals.Instance.onPlay -= OnPlay;
-            CoreGameSignals.Instance.onStageFailed -= _movementController.OnPlayerDie;
-            CoreGameSignals.Instance.onRestartLevel -= _movementController.OnReset;
             CoreGameSignals.Instance.onRestartLevel -= OnResetLevel;
-
-
         }
 
 
@@ -89,16 +78,30 @@ namespace Managers
 
         private void OnPlay()
         {
-            IsTimeUp = false;
+            
         }
         private void OnResetLevel()
         {
-            IsTimeUp = false;
+            transform.position = _data.BallPositions[0];
         }
 
         private void OnTimeUp()
         {
-            IsTimeUp = true;
+            _isFinalStage = false;
+
+        }
+
+        private void OnFinalStage()
+        {
+            _isFinalStage = true;
+        }
+
+        private void OnBasket()
+        {
+            if (_isFinalStage)
+            {
+                transform.position = _data.BallPositions[Random.Range(0, _data.BallPositions.Length - 1)];
+            }
         }
     }
 }

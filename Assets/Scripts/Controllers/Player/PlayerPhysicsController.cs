@@ -34,6 +34,7 @@ namespace Controllers
             if (other.CompareTag("TargetCenter"))
             {
                 ScoreSignals.Instance.onScoreIncrease?.Invoke(ScoreTypeEnums.Score, 1);
+                LevelSignals.Instance.onBasket?.Invoke();
             }
         }
 
