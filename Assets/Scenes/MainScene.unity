@@ -7990,6 +7990,7 @@ MonoBehaviour:
   slider: {fileID: 593599234}
   sliderImage: {fileID: 762709119}
   stageNum: 0
+  levelNum: 0
 --- !u!225 &1994952899310298036
 CanvasGroup:
   m_ObjectHideFlags: 0

@@ -22,12 +22,10 @@ public class GameOverPanelController : MonoBehaviour
     [SerializeField] private Slider slider;
     [SerializeField] private Image sliderImage;
 
-    [SerializeField] private int stageNum = 0;
+    [SerializeField] private int stageNum = 0, levelNum = 0;
 
     #endregion
     #region Private Variables
-    private int _highScore;
-    private bool _isSuccess = false;
     private UIData _data;
     #endregion
     #endregion
@@ -39,7 +37,6 @@ public class GameOverPanelController : MonoBehaviour
 
     private void Init()
     {
-        _highScore = InitializeHighScore();
         _data = GetData();
     }
     private UIData GetData() => Resources.Load<CD_UI>("Data/CD_UI").Data;
@@ -51,16 +48,13 @@ public class GameOverPanelController : MonoBehaviour
     private void InitializeStageNum()
     {
         stageNum = SaveSignals.Instance.onGetScore(SaveLoadStates.StageNum, SaveFiles.SaveFile);
+        levelNum = SaveSignals.Instance.onGetScore(SaveLoadStates.Level, SaveFiles.SaveFile);
     }
 
     public void CloseGameOverPanel()
     {
         UISignals.Instance.onClosePanel?.Invoke(UIPanels.GameOverPanel);
         UISignals.Instance.onOpenPanel?.Invoke(UIPanels.StartPanel);
-    }
-    private int InitializeHighScore()
-    {
-        return SaveSignals.Instance.onGetScore(SaveLoadStates.Score, SaveFiles.SaveFile);
     }
 
     public void MenuBtn()
@@ -88,8 +82,6 @@ public class GameOverPanelController : MonoBehaviour
 
     public void OnStageSuccessFul()
     {
-        _isSuccess = true;
-
         ++stageNum;
         TournamentPartSuccess();
 
@@ -100,10 +92,13 @@ public class GameOverPanelController : MonoBehaviour
         else if (stageNum == 4)
         {
             LevelSignals.Instance.onTournamentWon?.Invoke();
+            CoreGameSignals.Instance.onNextLevel?.Invoke();
+            SaveSignals.Instance.onSaveScore?.Invoke(++levelNum, SaveLoadStates.Level, SaveFiles.SaveFile);
             //level'i arttýrýp, Farklý bir panelden ödül seçtirmeli veya direk menuye atmalý
             stageNum = 0;
-            return;
         }
+        SaveSignals.Instance.onSaveScore?.Invoke(stageNum, SaveLoadStates.StageNum, SaveFiles.SaveFile);
+
     }
 
     private void TournamentPartSuccess()
@@ -124,7 +119,6 @@ public class GameOverPanelController : MonoBehaviour
 
     public void OnStageFailed()
     {
-        _isSuccess = false;
         stageNum = 0;
         TournamentPartFail();
     }

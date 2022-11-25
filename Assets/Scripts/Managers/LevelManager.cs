@@ -62,6 +62,7 @@ namespace Managers
             CoreGameSignals.Instance.onNextLevel += OnNextLevel;
             CoreGameSignals.Instance.onRestartLevel += OnRestartLevel;
             CoreGameSignals.Instance.onGetLevelID += OnGetLevelID;
+            CoreGameSignals.Instance.onPlay += OnPlay;
 
         }
 
@@ -74,6 +75,7 @@ namespace Managers
             CoreGameSignals.Instance.onNextLevel -= OnNextLevel;
             CoreGameSignals.Instance.onRestartLevel -= OnRestartLevel;
             CoreGameSignals.Instance.onGetLevelID -= OnGetLevelID;
+            CoreGameSignals.Instance.onPlay -= OnPlay;
 
         }
 
@@ -122,6 +124,13 @@ namespace Managers
         private void OnClearActiveLevel()
         {
             levelClearer.ClearActiveLevel(levelHolder.transform);
+        }
+        private void OnPlay()
+        {
+            if (SaveSignals.Instance.onGetScore(SaveLoadStates.StageNum,SaveFiles.SaveFile) == 3)
+            {
+                LevelSignals.Instance.onFinalStage?.Invoke();
+            }
         }
     }
 }

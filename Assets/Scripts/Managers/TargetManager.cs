@@ -26,6 +26,7 @@ namespace Managers
 
         #region Private Variables
         private TargetData _data;
+        [ShowInInspector]
         private bool _isFinalStage = false;
         #endregion
 
