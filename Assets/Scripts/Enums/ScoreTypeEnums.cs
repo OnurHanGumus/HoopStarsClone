@@ -8,5 +8,6 @@ namespace Enums
         Money,
         Gem,
         Score,
+        EnemyScore,
     }
 }

@@ -93,7 +93,6 @@ namespace Managers
         }
         private void OnResetLevel()
         {
-            transform.position = new Vector3(0, 0, 0);
             IsTimeUp = false;
         }
 

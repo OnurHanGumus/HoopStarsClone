@@ -61,25 +61,6 @@ public class GameOverPanelController : MonoBehaviour
     {
         return SaveSignals.Instance.onGetScore(SaveLoadStates.Score, SaveFiles.SaveFile);
     }
-    //public void ShowThePanel()
-    //{
-    //    int temp = ScoreSignals.Instance.onGetScore();
-
-    //    if(temp > _highScore)
-    //    {
-    //        successPanel.SetActive(true);
-    //        failPanel.SetActive(false);
-    //        scoreTxt.text = "High Score: " + temp;
-    //        _highScore = temp;
-    //        SaveSignals.Instance.onSaveScore?.Invoke(temp,SaveLoadStates.Score,SaveFiles.SaveFile);
-    //    }
-    //    else
-    //    {
-    //        successPanel.SetActive(false);
-    //        failPanel.SetActive(true);
-    //        scoreTxt.text = "Score: " + temp;
-    //    }
-    //}
 
     public void TryAgainBtn()
     {
@@ -94,15 +75,10 @@ public class GameOverPanelController : MonoBehaviour
         UISignals.Instance.onOpenPanel?.Invoke(UIPanels.StartPanel);
     }
 
-    [Button]
-    public void Open()
-    {
-        CoreGameSignals.Instance.onStageFailed?.Invoke();
-    }
-
     public void OnStageSuccessFul()
     {
         _isSuccess = true;
+        ++stageNum;
         TournamentPartSuccess();
     }
 
@@ -118,13 +94,24 @@ public class GameOverPanelController : MonoBehaviour
             stageNodes[i].color = _data.SuccessStageColor;
         }
         slider.value = _data.SliderValues[stageNum];
-        ++stageNum;
 
     }
 
     public void OnStageFailed()
     {
         _isSuccess = false;
+        TournamentPartFail();
     }
 
+    private void TournamentPartFail()
+    {
+        for (int i = 0; i < stageNum; i++)
+        {
+            if (i == stageNodes.Length)
+            {
+                return;
+            }
+            stageNodes[i].color = _data.FailStageColor;
+        }
+    }
 }

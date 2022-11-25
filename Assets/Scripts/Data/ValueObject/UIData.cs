@@ -8,6 +8,6 @@ namespace Data.ValueObject
     {
         //public float  = 10, ForceY = 10;
         public float[] SliderValues = {0f, 0.3f, 0.7f, 1f};
-        public Color32 DefaultStageColor, SuccessStageColor;
+        public Color32 DefaultStageColor, SuccessStageColor, FailStageColor;
     }
 }

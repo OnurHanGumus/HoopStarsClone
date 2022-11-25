@@ -92,8 +92,17 @@ namespace Managers
 
         private void OnScoreIncrease(ScoreTypeEnums type, int amount)
         {
-            PlayerScore += amount;
-            UISignals.Instance.onSetChangedText?.Invoke(type, PlayerScore);
+            if (type.Equals(ScoreTypeEnums.Score))
+            {
+                PlayerScore += amount;
+                UISignals.Instance.onSetChangedText?.Invoke(type, PlayerScore);
+            }
+            else if (type.Equals(ScoreTypeEnums.EnemyScore))
+            {
+                EnemyScore += amount;
+                UISignals.Instance.onSetChangedText?.Invoke(type, EnemyScore);
+            }
+
         }
 
         private void OnScoreDecrease(ScoreTypeEnums type, int amount)

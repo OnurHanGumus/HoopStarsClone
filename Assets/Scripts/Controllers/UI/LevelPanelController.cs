@@ -6,6 +6,7 @@ using UnityEngine;
 using TMPro;
 using System;
 using Data.UnityObject;
+using Data.ValueObject;
 using DG.Tweening;
 
 public class LevelPanelController : MonoBehaviour
@@ -14,11 +15,11 @@ public class LevelPanelController : MonoBehaviour
     #region Public Variables
     #endregion
     #region SerializeField Variables
-    [SerializeField] private TextMeshPro scoreText, timerText;
+    [SerializeField] private TextMeshPro scoreText, timerText, enemyScoreText;
     [SerializeField] private int time = 60, currentTime = 60;
     #endregion
     #region Private Variables
-
+    private LevelData _data;
     #endregion
     #endregion
     private void Awake()
@@ -27,10 +28,10 @@ public class LevelPanelController : MonoBehaviour
     }
     private void Init()
     {
-
+        _data = GetData();
 
     }
-
+    private LevelData GetData() => Resources.Load<CD_Level>("Data/CD_Level").Data;
     private IEnumerator Timer()
     {
         --currentTime;
@@ -60,15 +61,21 @@ public class LevelPanelController : MonoBehaviour
         {
             scoreText.text = score.ToString();
         }
+        else if (type.Equals(ScoreTypeEnums.EnemyScore))
+        {
+            enemyScoreText.text = score.ToString();
+        }
     }
 
     public void OnRestartLevel()
     {
         scoreText.text = 0.ToString();
+        
     }
 
     public void OnPlay()
     {
+        currentTime = _data.TimerCount;
         StartCoroutine(Timer());
     }
 

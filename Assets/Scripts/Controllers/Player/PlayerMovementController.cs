@@ -97,8 +97,10 @@ namespace Controllers
         {
             _rig.useGravity = false;
             _isOnRight = true;
-            transform.position = Vector2.zero;
-            _rig.velocity = Vector2.zero;
+            transform.position = new Vector3(_data.InitializePosX,_data.InitializePosY);
+            _rig.velocity = Vector3.zero;
+            _rig.angularVelocity = Vector3.zero;
+            _rig.rotation = Quaternion.Euler(Vector3.zero);
         }
     }
 }
