@@ -11,5 +11,7 @@ namespace Signals
     {
         public Func<int> onGetCurrentModdedLevel = delegate { return 0; };
         public UnityAction onTimeUp = delegate { };
+        public UnityAction onTournamentWon = delegate { };
+        public UnityAction onFinalStage = delegate { };
     }
 }

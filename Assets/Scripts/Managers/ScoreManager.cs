@@ -37,6 +37,7 @@ namespace Managers
             get { return _playerScore; }
             set { _playerScore = value; }
         }
+        [ShowInInspector]
 
         public int EnemyScore
         {
@@ -119,6 +120,7 @@ namespace Managers
         private void OnRestartLevel()
         {
             PlayerScore = 0;
+            EnemyScore = 0;
         }
 
         private void OnTimeUp()

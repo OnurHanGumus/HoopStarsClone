@@ -62,24 +62,45 @@ public class GameOverPanelController : MonoBehaviour
         return SaveSignals.Instance.onGetScore(SaveLoadStates.Score, SaveFiles.SaveFile);
     }
 
-    public void TryAgainBtn()
-    {
-        CoreGameSignals.Instance.onRestartLevel?.Invoke();
-        UISignals.Instance.onClosePanel?.Invoke(UIPanels.GameOverPanel);
-        CoreGameSignals.Instance.onPlay?.Invoke();
-    }
     public void MenuBtn()
     {
         CoreGameSignals.Instance.onRestartLevel?.Invoke();
         UISignals.Instance.onClosePanel?.Invoke(UIPanels.GameOverPanel);
         UISignals.Instance.onOpenPanel?.Invoke(UIPanels.StartPanel);
+
+        ClearTournamentPart();
+    }
+
+    private void ClearTournamentPart()
+    {
+        foreach (var i in stageNodes)
+        {
+            i.color = _data.DefaultStageColor;
+        }
+        foreach (var i in crowns)
+        {
+            i.SetActive(false);
+        }
     }
 
     public void OnStageSuccessFul()
     {
         _isSuccess = true;
+
         ++stageNum;
         TournamentPartSuccess();
+
+        if (stageNum == 3)
+        {
+            LevelSignals.Instance.onFinalStage?.Invoke();
+        }
+        else if (stageNum == 4)
+        {
+            LevelSignals.Instance.onTournamentWon?.Invoke();
+            //level'i arttýrýp, Farklý bir panelden ödül seçtirmeli veya direk menuye atmalý
+            stageNum = 0;
+            return;
+        }
     }
 
     private void TournamentPartSuccess()
@@ -94,24 +115,24 @@ public class GameOverPanelController : MonoBehaviour
             stageNodes[i].color = _data.SuccessStageColor;
         }
         slider.value = _data.SliderValues[stageNum];
-
+        successPanel.SetActive(true);
+        failPanel.SetActive(false);
     }
 
     public void OnStageFailed()
     {
         _isSuccess = false;
+        stageNum = 0;
         TournamentPartFail();
     }
 
     private void TournamentPartFail()
     {
-        for (int i = 0; i < stageNum; i++)
+        for (int i = 0; i < stageNodes.Length; i++)
         {
-            if (i == stageNodes.Length)
-            {
-                return;
-            }
             stageNodes[i].color = _data.FailStageColor;
         }
+        successPanel.SetActive(false);
+        failPanel.SetActive(true);
     }
 }

@@ -18,9 +18,13 @@ MonoBehaviour:
     - 0.3
     - 0.7
     - 1
+    - 1
     DefaultStageColor:
       serializedVersion: 2
       rgba: 4294967295
     SuccessStageColor:
       serializedVersion: 2
       rgba: 4284345112
+    FailStageColor:
+      serializedVersion: 2
+      rgba: 4278190335
