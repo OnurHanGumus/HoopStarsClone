@@ -70,6 +70,7 @@ public class LevelPanelController : MonoBehaviour
     public void OnRestartLevel()
     {
         scoreText.text = 0.ToString();
+        enemyScoreText.text = 0.ToString();
         
     }
 

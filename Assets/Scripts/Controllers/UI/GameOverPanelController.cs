@@ -130,6 +130,7 @@ public class GameOverPanelController : MonoBehaviour
             stageNodes[i].color = _data.FailStageColor;
         }
         sliderImage.color = _data.FailStageColor;
+        SaveSignals.Instance.onSaveScore?.Invoke(stageNum, SaveLoadStates.StageNum, SaveFiles.SaveFile);
 
         successPanel.SetActive(false);
         failPanel.SetActive(true);

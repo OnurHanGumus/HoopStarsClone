@@ -14,5 +14,6 @@ namespace Signals
         public UnityAction onTournamentWon = delegate { };
         public UnityAction onFinalStage = delegate { };
         public UnityAction onBasket = delegate { };
+        public Func<Transform> onGetTransform = delegate { return null; };
     }
 }

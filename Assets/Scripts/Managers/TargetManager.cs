@@ -56,6 +56,7 @@ namespace Managers
             LevelSignals.Instance.onFinalStage += OnFinalStage;
             LevelSignals.Instance.onTimeUp += OnTimeUp;
             LevelSignals.Instance.onBasket += OnBasket;
+            LevelSignals.Instance.onGetTransform += OnGetTargetTransform;
 
             CoreGameSignals.Instance.onRestartLevel += OnResetLevel;
         }
@@ -65,6 +66,7 @@ namespace Managers
             LevelSignals.Instance.onFinalStage -= OnFinalStage;
             LevelSignals.Instance.onTimeUp -= OnTimeUp;
             LevelSignals.Instance.onBasket -= OnBasket;
+            LevelSignals.Instance.onGetTransform -= OnGetTargetTransform;
 
             CoreGameSignals.Instance.onRestartLevel -= OnResetLevel;
         }
@@ -77,6 +79,10 @@ namespace Managers
 
         #endregion
 
+        private Transform OnGetTargetTransform()
+        {
+            return transform;
+        }
         private void OnPlay()
         {
             

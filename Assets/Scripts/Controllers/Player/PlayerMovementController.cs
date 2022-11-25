@@ -89,10 +89,6 @@ namespace Controllers
             //_rig.velocity = Vector3.zero;
         }
 
-        public void OnBasket()
-        {
-            _isOnRight = !_isOnRight;
-        }
         public void OnReset()
         {
             _rig.useGravity = false;
