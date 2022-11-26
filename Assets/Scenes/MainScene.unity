@@ -2329,7 +2329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particlePrefab: {fileID: 1952076019714368, guid: d42852d7985301b42a647ff270d3d088, type: 3}
-  amountParticle: 5
+  amountParticle: 10
 --- !u!1 &749374685
 GameObject:
   m_ObjectHideFlags: 0
