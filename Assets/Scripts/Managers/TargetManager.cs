@@ -105,6 +105,9 @@ namespace Managers
 
         private void OnBasket()
         {
+            GameObject temp = PoolSignals.Instance.onGetObject(PoolEnums.Particle);
+            temp.transform.position = transform.position;
+            temp.SetActive(true);
             if (_isFinalStage)
             {
                 transform.position = _data.BallPositions[Random.Range(0, _data.BallPositions.Length - 1)];

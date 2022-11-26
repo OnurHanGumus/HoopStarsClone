@@ -17,8 +17,8 @@ MonoBehaviour:
     BasketCountToWin: 030000000500000007000000
     ScorePointsDefaultAlpha: 50
     ScorePointsIncreasedAlpha: 255
-    StartDelay: 1
-    BackgroundPanelMoveDelay: 0.5
+    StartDelay: 1.5
+    BackgroundPanelMoveDelay: 1
     BackgroundPanelInitializePosY: 15
     BackgroundPanelStartPosY: 8.1
     GoTextFadeTime: 0.2

@@ -2301,7 +2301,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &735196703
 Transform:
   m_ObjectHideFlags: 0
@@ -2328,9 +2328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5abcbf0e1b2cb7949b18fbd42a949757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectablePrefab: {fileID: 0}
-  particlePrefab: {fileID: 0}
-  amountCollectables: 50
+  particlePrefab: {fileID: 1952076019714368, guid: d42852d7985301b42a647ff270d3d088, type: 3}
   amountParticle: 5
 --- !u!1 &749374685
 GameObject:
