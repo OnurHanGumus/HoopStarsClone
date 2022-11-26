@@ -41,6 +41,7 @@ namespace Managers
         private void Awake()
         {
             Init();
+            OnInitializeLevel();
         }
 
         private void Init()
@@ -101,7 +102,6 @@ namespace Managers
 
         private void Start()
         {
-            OnInitializeLevel();
         }
 
         private int OnGetCurrentModdedLevelId()

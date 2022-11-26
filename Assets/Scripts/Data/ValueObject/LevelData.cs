@@ -17,5 +17,7 @@ namespace Data.ValueObject
 
         public float GoTextFadeTime = 0.2f;
         public float GoTextShowTime = 0.4f;
+
+        public Color32[] LevelColors;
     }
 }

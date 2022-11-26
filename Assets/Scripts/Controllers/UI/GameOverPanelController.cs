@@ -85,11 +85,11 @@ public class GameOverPanelController : MonoBehaviour
         ++stageNum;
         TournamentPartSuccess();
 
-        if (stageNum == 3)
+        if (stageNum == stageNodes.Length - 1)
         {
             LevelSignals.Instance.onFinalStage?.Invoke();
         }
-        else if (stageNum == 4)
+        else if (stageNum == stageNodes.Length)
         {
             LevelSignals.Instance.onTournamentWon?.Invoke();
             CoreGameSignals.Instance.onNextLevel?.Invoke();

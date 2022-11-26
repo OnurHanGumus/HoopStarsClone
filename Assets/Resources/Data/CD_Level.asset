@@ -18,3 +18,15 @@ MonoBehaviour:
     ScorePointsDefaultAlpha: 50
     ScorePointsIncreasedAlpha: 255
     StartDelay: 1
+    BackgroundPanelMoveDelay: 0.5
+    BackgroundPanelInitializePosY: 15
+    BackgroundPanelStartPosY: 8.1
+    GoTextFadeTime: 0.2
+    GoTextShowTime: 0.4
+    LevelColors:
+    - serializedVersion: 2
+      rgba: 4294371529
+    - serializedVersion: 2
+      rgba: 4287551231
+    - serializedVersion: 2
+      rgba: 4294887397

@@ -101,20 +101,6 @@ namespace Managers
         {
             CoreGameSignals.Instance.onPlayPressed?.Invoke();
         }
-
-        public void NextLevel()
-        {
-            CoreGameSignals.Instance.onNextLevel?.Invoke();
-            UISignals.Instance.onClosePanel?.Invoke(UIPanels.WinPanel);
-            UISignals.Instance.onOpenPanel?.Invoke(UIPanels.StartPanel);
-        }
-
-        public void RestartLevel()
-        {
-            CoreGameSignals.Instance.onRestartLevel?.Invoke();
-            UISignals.Instance.onClosePanel?.Invoke(UIPanels.FailPanel);
-            UISignals.Instance.onOpenPanel?.Invoke(UIPanels.StartPanel);
-        }
         public void OptionsButton()
         {
             UISignals.Instance.onOpenPanel?.Invoke(UIPanels.OptionsPanel);
