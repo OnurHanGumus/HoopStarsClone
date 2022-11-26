@@ -31,7 +31,7 @@ namespace Managers
         {
             UISignals.Instance.onOpenPanel += OnOpenPanel;
             UISignals.Instance.onClosePanel += OnClosePanel;
-            UISignals.Instance.onSetChangedText += levelPanelController.OnScoreUpdateText;
+            UISignals.Instance.onSetChangedText += levelPanelController.OnScoreUpdate;
             CoreGameSignals.Instance.onPlay += OnPlay;
             CoreGameSignals.Instance.onPlay += levelPanelController.OnPlay;
             CoreGameSignals.Instance.onStageFailed += OnStageFailed;
@@ -47,7 +47,7 @@ namespace Managers
         {
             UISignals.Instance.onOpenPanel -= OnOpenPanel;
             UISignals.Instance.onClosePanel -= OnClosePanel;
-            UISignals.Instance.onSetChangedText -= levelPanelController.OnScoreUpdateText;
+            UISignals.Instance.onSetChangedText -= levelPanelController.OnScoreUpdate;
             CoreGameSignals.Instance.onPlay -= OnPlay;
             CoreGameSignals.Instance.onPlay -= levelPanelController.OnPlay;
             CoreGameSignals.Instance.onStageFailed -= OnStageFailed;

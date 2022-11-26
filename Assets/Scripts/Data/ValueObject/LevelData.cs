@@ -7,6 +7,8 @@ namespace Data.ValueObject
     public class LevelData
     {
         public int TimerCount = 59;
+        public int[] BasketCountToWin;
 
+        public float ScorePointsDefaultAlpha = 50f, ScorePointsIncreasedAlpha = 255f;
     }
 }

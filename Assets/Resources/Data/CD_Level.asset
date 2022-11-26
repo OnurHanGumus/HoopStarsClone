@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data:
     TimerCount: 15
+    BasketCountToWin: 030000000500000007000000

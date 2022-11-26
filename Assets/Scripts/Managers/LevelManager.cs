@@ -31,6 +31,8 @@ namespace Managers
         #region Private Variables
 
         [ShowInInspector] private int _levelID;
+        private LevelData _data;
+        private int _currentModdedLevelId = 0;
 
         #endregion
 
@@ -38,8 +40,17 @@ namespace Managers
 
         private void Awake()
         {
-            _levelID = GetActiveLevel();
+            Init();
         }
+
+        private void Init()
+        {
+            _levelID = GetActiveLevel();
+            _data = GetData();
+        }
+
+        public LevelData GetData() => Resources.Load<CD_Level>("Data/CD_Level").Data;
+
 
         private int GetActiveLevel()
         {
@@ -63,6 +74,7 @@ namespace Managers
             CoreGameSignals.Instance.onRestartLevel += OnRestartLevel;
             CoreGameSignals.Instance.onGetLevelID += OnGetLevelID;
             CoreGameSignals.Instance.onPlay += OnPlay;
+            LevelSignals.Instance.onGetCurrentModdedLevel += OnGetCurrentModdedLevelId;
 
         }
 
@@ -76,6 +88,7 @@ namespace Managers
             CoreGameSignals.Instance.onRestartLevel -= OnRestartLevel;
             CoreGameSignals.Instance.onGetLevelID -= OnGetLevelID;
             CoreGameSignals.Instance.onPlay -= OnPlay;
+            LevelSignals.Instance.onGetCurrentModdedLevel -= OnGetCurrentModdedLevelId;
 
         }
 
@@ -89,6 +102,11 @@ namespace Managers
         private void Start()
         {
             OnInitializeLevel();
+        }
+
+        private int OnGetCurrentModdedLevelId()
+        {
+            return _currentModdedLevelId;
         }
 
         private void OnNextLevel()
@@ -117,8 +135,8 @@ namespace Managers
         private void OnInitializeLevel()
         {
             UnityEngine.Object[] Levels = Resources.LoadAll("Levels");
-            int newLevelId = _levelID % Levels.Length;
-            levelLoader.InitializeLevel((GameObject)Levels[newLevelId], levelHolder.transform);
+            _currentModdedLevelId = _levelID % Levels.Length;
+            levelLoader.InitializeLevel((GameObject)Levels[_currentModdedLevelId], levelHolder.transform);
         }
 
         private void OnClearActiveLevel()
