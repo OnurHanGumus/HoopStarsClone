@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.17338738, g: 0.21673954, b: 0.29880902, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -896,13 +896,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 146124414}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.76604444, y: 0, z: 0, w: 0.64278764}
   m_LocalPosition: {x: -549.18506, y: -1227.2853, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 975925022}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 100, y: 0, z: 0}
 --- !u!1 &153621028
 GameObject:
   m_ObjectHideFlags: 0
@@ -4017,6 +4017,48 @@ SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 2457084391573355012, guid: 0945a498d140a094b858faea9523c7ce, type: 3}
   m_PrefabInstance: {fileID: 488689755}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1209789746 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 668358450198449352, guid: 0945a498d140a094b858faea9523c7ce, type: 3}
+  m_PrefabInstance: {fileID: 488689755}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1209789747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209789746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f907107a3c427248ad0a3fd4126a9ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 836862477}
+  timerText: {fileID: 2139336956}
+  enemyScoreText: {fileID: 1274636371}
+  playerScorePoints:
+  - {fileID: 213603561}
+  - {fileID: 54083278}
+  - {fileID: 855478351}
+  - {fileID: 722970079}
+  - {fileID: 1099673257}
+  - {fileID: 2067865441}
+  - {fileID: 973080523}
+  - {fileID: 1721899774}
+  - {fileID: 1367613888}
+  - {fileID: 1808944027}
+  enemyScorePoints:
+  - {fileID: 79237431}
+  - {fileID: 1058511470}
+  - {fileID: 1389266076}
+  - {fileID: 2103581418}
+  - {fileID: 792510841}
+  - {fileID: 1312960365}
+  - {fileID: 1207421081}
+  - {fileID: 488788685}
+  - {fileID: 1778200115}
+  - {fileID: 1992856503}
 --- !u!1 &1235452861
 GameObject:
   m_ObjectHideFlags: 0
@@ -4845,33 +4887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d766ce2ffa50b34c9896683ac09ade7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 836862477}
-  timerText: {fileID: 2139336956}
-  enemyScoreText: {fileID: 1274636371}
   goText: {fileID: 242240790}
-  currentTime: 5
-  playerScorePoints:
-  - {fileID: 213603561}
-  - {fileID: 54083278}
-  - {fileID: 855478351}
-  - {fileID: 722970079}
-  - {fileID: 1099673257}
-  - {fileID: 2067865441}
-  - {fileID: 973080523}
-  - {fileID: 1721899774}
-  - {fileID: 1367613888}
-  - {fileID: 1808944027}
-  enemyScorePoints:
-  - {fileID: 79237431}
-  - {fileID: 1058511470}
-  - {fileID: 1389266076}
-  - {fileID: 2103581418}
-  - {fileID: 792510841}
-  - {fileID: 1312960365}
-  - {fileID: 1207421081}
-  - {fileID: 488788685}
-  - {fileID: 1778200115}
-  - {fileID: 1992856503}
 --- !u!114 &1628992610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9225,7 +9241,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8373705555844641698, guid: 9b21a3d39a6acb74da678ca61d8b3767, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.1999998
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 8373705555844641698, guid: 9b21a3d39a6acb74da678ca61d8b3767, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9324,6 +9340,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9109814171559577555, guid: f69d3aac2c28719488658c8fb58c01b4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 457df6a956cac764a8a215c50aed8119, type: 2}
     - target: {fileID: 9109814171559577557, guid: f69d3aac2c28719488658c8fb58c01b4, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -9394,7 +9414,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8374547706087439650}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3, y: 2.2209997, z: 0}
+  m_LocalPosition: {x: 3, y: 1.8, z: 0}
   m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_Children:
   - {fileID: 8375504657277140576}

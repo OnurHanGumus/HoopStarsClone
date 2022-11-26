@@ -18,7 +18,7 @@ MonoBehaviour:
     MaxHorizontalPoint: 2
     MaxVerticalPoint: 6.5
     InitializePosX: -3
-    InitializePosY: 2.2
-    StartPosX: -1.4
-    StartPosY: 1.2
+    InitializePosY: 1.8
+    StartPosX: -1
+    StartPosY: 1.8
     PlayerInitializeAnimDelay: 0.5
