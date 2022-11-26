@@ -150,7 +150,6 @@ namespace Managers
             if (PlayerScore >= EnemyScore)
             {
                 CoreGameSignals.Instance.onStageSuccessful?.Invoke();
-
             }
             else
             {

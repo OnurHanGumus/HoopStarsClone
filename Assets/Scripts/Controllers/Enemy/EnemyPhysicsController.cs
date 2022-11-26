@@ -37,10 +37,5 @@ namespace Controllers
                 LevelSignals.Instance.onBasket?.Invoke();
             }
         }
-
-        private void OnTriggerExit(Collider other)
-        {
-
-        }
     }
 }

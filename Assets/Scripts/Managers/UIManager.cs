@@ -89,7 +89,6 @@ namespace Managers
             UISignals.Instance.onClosePanel?.Invoke(UIPanels.LevelPanel);
             UISignals.Instance.onOpenPanel?.Invoke(UIPanels.GameOverPanel);
             UISignals.Instance.onOpenPanel?.Invoke(UIPanels.GemPanel);
-            //gameOverPanelController.ShowThePanel();
         }
 
         private void OnLevelSuccessful()
@@ -115,17 +114,6 @@ namespace Managers
             CoreGameSignals.Instance.onRestartLevel?.Invoke();
             UISignals.Instance.onClosePanel?.Invoke(UIPanels.FailPanel);
             UISignals.Instance.onOpenPanel?.Invoke(UIPanels.StartPanel);
-        }
-
-        public void PauseButton()
-        {
-            UISignals.Instance.onOpenPanel?.Invoke(UIPanels.PausePanel);
-            Time.timeScale = 0f;
-        }
-        public void HighScoreButton()
-        {
-            UISignals.Instance.onOpenPanel?.Invoke(UIPanels.HighScorePanel);
-            UISignals.Instance.onClosePanel?.Invoke(UIPanels.StartPanel);
         }
         public void OptionsButton()
         {
