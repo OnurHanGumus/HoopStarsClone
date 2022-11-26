@@ -41,10 +41,10 @@ public class LevelPanelController : MonoBehaviour
     private IEnumerator StartDelay()
     {
         yield return new WaitForSeconds(_data.StartDelay);
-        goText.DOFade(1, 0.2f);
+        goText.DOFade(1, _data.GoTextFadeTime);
         CoreGameSignals.Instance.onPlay?.Invoke();
-        yield return new WaitForSeconds(0.4f);
-        goText.DOFade(0, 0.2f);
+        yield return new WaitForSeconds(_data.GoTextShowTime);
+        goText.DOFade(0, _data.GoTextFadeTime);
     }
 
 }

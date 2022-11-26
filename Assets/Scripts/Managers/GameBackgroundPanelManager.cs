@@ -9,6 +9,7 @@ using Data.ValueObject;
 using TMPro;
 using System.Collections;
 using Data.UnityObject;
+using DG.Tweening;
 
 namespace Managers
 {
@@ -50,6 +51,7 @@ namespace Managers
             UISignals.Instance.onSetChangedText += OnScoreUpdate;
             CoreGameSignals.Instance.onPlay += OnPlay;
             CoreGameSignals.Instance.onRestartLevel += OnRestartLevel;
+            CoreGameSignals.Instance.onPlayPressed += OnPlayPressed;
 
         }
 
@@ -58,6 +60,7 @@ namespace Managers
             UISignals.Instance.onSetChangedText -= OnScoreUpdate;
             CoreGameSignals.Instance.onPlay -= OnPlay;
             CoreGameSignals.Instance.onRestartLevel -= OnRestartLevel;
+            CoreGameSignals.Instance.onPlayPressed -= OnPlayPressed;
 
         }
 
@@ -69,6 +72,11 @@ namespace Managers
         #endregion
 
         private LevelData GetData() => Resources.Load<CD_Level>("Data/CD_Level").Data;
+
+        private void MovePanel(float yPos)
+        {
+            transform.DOMoveY(yPos, _data.BackgroundPanelMoveDelay).SetEase(Ease.InOutBack);
+        }
         private IEnumerator Timer()
         {
             --_currentTime;
@@ -140,6 +148,7 @@ namespace Managers
 
         public void OnRestartLevel()
         {
+            MovePanel(_data.BackgroundPanelInitializePosY);
             scoreText.text = 0.ToString();
             enemyScoreText.text = 0.ToString();
             DeactivateScorePoints();
@@ -149,6 +158,11 @@ namespace Managers
             _currentTime = _data.TimerCount;
             StartCoroutine(Timer());
             InitializeScorePoints();
+        }
+
+        private void OnPlayPressed()
+        {
+            MovePanel(_data.BackgroundPanelStartPosY);
         }
 
     }
