@@ -10,5 +10,7 @@ namespace Enums
         SoundState,
         Level,
         StageNum,
+        Gem,
+
     }
 }

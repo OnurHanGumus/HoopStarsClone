@@ -31,6 +31,7 @@ namespace Managers
 
         private int _playerScore;
         private int _enemyScore;
+        private int _gem;
         [ShowInInspector]
         public int PlayerScore
         {
@@ -45,19 +46,25 @@ namespace Managers
             set { _enemyScore = value; }
         }
 
-
-
-        #endregion
-
-        #endregion
-
-        private void Awake()
+        public int Gem
         {
-            Init();
+            get { return _gem; }
+            set { _gem = value; }
         }
+
+
+
+        #endregion
+
+        #endregion
         private void Init()
         {
-
+            Gem = InitializeValue(SaveLoadStates.Gem);
+            UISignals.Instance.onSetChangedText?.Invoke(ScoreTypeEnums.Gem, Gem);
+        }
+        private void Start()
+        {
+            Init();
         }
         #region Event Subscription
 
@@ -103,12 +110,23 @@ namespace Managers
                 EnemyScore += amount;
                 UISignals.Instance.onSetChangedText?.Invoke(type, EnemyScore);
             }
+            else if (type.Equals(ScoreTypeEnums.Gem))
+            {
+                Gem += amount;
+                UISignals.Instance.onSetChangedText?.Invoke(type, Gem);
+                SaveSignals.Instance.onSaveScore?.Invoke(Gem, SaveLoadStates.Gem, SaveFiles.SaveFile);
+            }
 
         }
 
         private void OnScoreDecrease(ScoreTypeEnums type, int amount)
         {
-
+            if (type.Equals(ScoreTypeEnums.Gem))
+            {
+                Gem -= amount;
+                UISignals.Instance.onSetChangedText?.Invoke(type, Gem);
+                SaveSignals.Instance.onSaveScore?.Invoke(Gem, SaveLoadStates.Gem, SaveFiles.SaveFile);
+            }
         }
 
 
@@ -121,6 +139,10 @@ namespace Managers
         {
             PlayerScore = 0;
             EnemyScore = 0;
+        }
+        private int InitializeValue(SaveLoadStates type)
+        {
+            return SaveSignals.Instance.onGetScore(type, SaveFiles.SaveFile);
         }
 
         private void OnTimeUp()

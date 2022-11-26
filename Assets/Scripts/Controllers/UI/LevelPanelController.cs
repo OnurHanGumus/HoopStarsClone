@@ -76,7 +76,6 @@ public class LevelPanelController : MonoBehaviour
 
             playerScorePoints[i].color = new Color32(255, 255, 255, (byte) _data.ScorePointsDefaultAlpha);
             enemyScorePoints[i].color = new Color32(255, 255, 255, (byte)_data.ScorePointsDefaultAlpha);
-
         }
     }
 

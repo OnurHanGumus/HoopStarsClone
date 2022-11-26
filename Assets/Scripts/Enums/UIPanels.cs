@@ -14,5 +14,6 @@ namespace Enums
         HighScorePanel,
         OptionsPanel,
         GameOverPanel,
+        GemPanel,
     }
 }
