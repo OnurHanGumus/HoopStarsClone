@@ -4,6 +4,7 @@ using UnityEngine;
 using Managers;
 using Data.UnityObject;
 using Data.ValueObject;
+using DG.Tweening;
 
 public class EnemyMovementController : MonoBehaviour
 {
@@ -73,7 +74,10 @@ public class EnemyMovementController : MonoBehaviour
 
         }
     }
-
+    public void OnPlayPressed()
+    {
+        transform.DOMoveX(_data.StartPosX, _data.EnemyInitializeAnimDelay).SetEase(Ease.InOutBack); ;
+    }
     public void OnPlay()
     {
         _isNotStarted = false;

@@ -15,3 +15,6 @@ MonoBehaviour:
   Data:
     TimerCount: 15
     BasketCountToWin: 030000000500000007000000
+    ScorePointsDefaultAlpha: 50
+    ScorePointsIncreasedAlpha: 255
+    StartDelay: 1

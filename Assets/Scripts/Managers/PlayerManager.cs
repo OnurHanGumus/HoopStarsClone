@@ -57,8 +57,8 @@ namespace Managers
 
 
             CoreGameSignals.Instance.onPlay += _movementController.OnPlay;
+            CoreGameSignals.Instance.onPlayPressed += _movementController.OnPlayPressed;
             CoreGameSignals.Instance.onPlay += OnPlay;
-            CoreGameSignals.Instance.onStageFailed += _movementController.OnPlayerDie;
             CoreGameSignals.Instance.onRestartLevel += _movementController.OnReset;
             CoreGameSignals.Instance.onRestartLevel += OnResetLevel;
 
@@ -71,8 +71,8 @@ namespace Managers
 
 
             CoreGameSignals.Instance.onPlay -= _movementController.OnPlay;
+            CoreGameSignals.Instance.onPlayPressed -= _movementController.OnPlayPressed;
             CoreGameSignals.Instance.onPlay -= OnPlay;
-            CoreGameSignals.Instance.onStageFailed -= _movementController.OnPlayerDie;
             CoreGameSignals.Instance.onRestartLevel -= _movementController.OnReset;
             CoreGameSignals.Instance.onRestartLevel -= OnResetLevel;
 
@@ -94,11 +94,6 @@ namespace Managers
         private void OnResetLevel()
         {
             IsTimeUp = false;
-        }
-
-        private void OnTimeUp()
-        {
-            IsTimeUp = true;
         }
     }
 }

@@ -16,6 +16,7 @@ public class LevelPanelController : MonoBehaviour
     #endregion
     #region SerializeField Variables
     [SerializeField] private TextMeshPro scoreText, timerText, enemyScoreText;
+    [SerializeField] private TextMeshProUGUI goText;
     [SerializeField] private int currentTime;
     [SerializeField] private List<SpriteRenderer> playerScorePoints, enemyScorePoints;
     #endregion
@@ -109,7 +110,19 @@ public class LevelPanelController : MonoBehaviour
         enemyScoreText.text = 0.ToString();
         DeactivateScorePoints();
     }
+    public void OnPlayPressed()
+    {
+        StartCoroutine(StartDelay());
+    }
 
+    private IEnumerator StartDelay()
+    {
+        yield return new WaitForSeconds(_data.StartDelay);
+        goText.DOFade(1, 0.2f);
+        CoreGameSignals.Instance.onPlay?.Invoke();
+        yield return new WaitForSeconds(0.4f);
+        goText.DOFade(0, 0.2f);
+    }
     public void OnPlay()
     {
         currentTime = _data.TimerCount;

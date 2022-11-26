@@ -5,6 +5,7 @@ using Enums;
 using Managers;
 using Signals;
 using UnityEngine;
+using DG.Tweening;
 
 namespace Controllers
 {
@@ -77,20 +78,20 @@ namespace Controllers
             _isClicked = true;
             _isOnRight = direction == 1;
         }
-
+        public void OnPlayPressed()
+        {
+            transform.DOMoveX(_data.StartPosX, _data.PlayerInitializeAnimDelay).SetEase(Ease.InOutBack);
+        }
 
         public void OnPlay()
         {
             _isNotStarted = false;
             _rig.useGravity = true;
         }
-        public void OnPlayerDie()
-        {
-            //_rig.velocity = Vector3.zero;
-        }
 
         public void OnReset()
         {
+            _isNotStarted = true;
             _rig.useGravity = false;
             _isOnRight = true;
             transform.position = new Vector3(_data.InitializePosX,_data.InitializePosY);

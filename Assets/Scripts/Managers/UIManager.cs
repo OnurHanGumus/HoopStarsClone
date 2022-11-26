@@ -34,7 +34,8 @@ namespace Managers
             UISignals.Instance.onClosePanel += OnClosePanel;
             UISignals.Instance.onSetChangedText += levelPanelController.OnScoreUpdate;
             UISignals.Instance.onSetChangedText += startPanelController.OnScoreUpdate;
-            CoreGameSignals.Instance.onPlay += OnPlay;
+            CoreGameSignals.Instance.onPlayPressed += OnPlayPressed;
+            CoreGameSignals.Instance.onPlayPressed += levelPanelController.OnPlayPressed; ;
             CoreGameSignals.Instance.onPlay += levelPanelController.OnPlay;
             CoreGameSignals.Instance.onPlay += startPanelController.OnPlay;
             CoreGameSignals.Instance.onStageFailed += OnStageFailed;
@@ -52,7 +53,8 @@ namespace Managers
             UISignals.Instance.onClosePanel -= OnClosePanel;
             UISignals.Instance.onSetChangedText -= levelPanelController.OnScoreUpdate;
             UISignals.Instance.onSetChangedText -= startPanelController.OnScoreUpdate;
-            CoreGameSignals.Instance.onPlay -= OnPlay;
+            CoreGameSignals.Instance.onPlayPressed -= OnPlayPressed;
+            CoreGameSignals.Instance.onPlayPressed += levelPanelController.OnPlayPressed; ;
             CoreGameSignals.Instance.onPlay -= levelPanelController.OnPlay;
             CoreGameSignals.Instance.onPlay -= startPanelController.OnPlay;
             CoreGameSignals.Instance.onStageFailed -= OnStageFailed;
@@ -81,7 +83,7 @@ namespace Managers
             uiPanelController.CloseMenu(panelParam);
         }
 
-        private void OnPlay()
+        private void OnPlayPressed()
         {
             UISignals.Instance.onClosePanel?.Invoke(UIPanels.StartPanel);
             UISignals.Instance.onClosePanel?.Invoke(UIPanels.GemPanel);
@@ -104,7 +106,7 @@ namespace Managers
 
         public void Play()
         {
-            CoreGameSignals.Instance.onPlay?.Invoke();
+            CoreGameSignals.Instance.onPlayPressed?.Invoke();
         }
 
         public void NextLevel()

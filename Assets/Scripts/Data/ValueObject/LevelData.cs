@@ -10,5 +10,6 @@ namespace Data.ValueObject
         public int[] BasketCountToWin;
 
         public float ScorePointsDefaultAlpha = 50f, ScorePointsIncreasedAlpha = 255f;
+        public float StartDelay = 2f;
     }
 }
