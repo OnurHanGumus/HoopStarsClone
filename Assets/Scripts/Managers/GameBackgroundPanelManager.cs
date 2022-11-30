@@ -25,7 +25,8 @@ namespace Managers
         #region Private Variables
         private LevelData _data;
         private int _levelId;
-        private int _currentTime;
+        private float _currentTime;
+        private bool _isTimerActivated = false;
 
         #endregion
         #endregion
@@ -77,28 +78,67 @@ namespace Managers
         {
             transform.DOMoveY(yPos, _data.BackgroundPanelMoveDelay).SetEase(Ease.InOutBack);
         }
-        private IEnumerator Timer()
+
+        private void Update()
         {
-            --_currentTime;
-            if (_currentTime.ToString().Length == 1)
+            if (_isTimerActivated)
             {
-                timerText.text = "00:0" + _currentTime;
+                SetTimer();
+            }
+        }
+
+        private void SetTimer()
+        {
+            if (_currentTime > 0)
+            {
+                _currentTime -= Time.deltaTime;
+                DisplayTimer();
             }
             else
             {
-                timerText.text = "00:" + _currentTime;
+                LevelSignals.Instance.onTimeUp?.Invoke();
+                //ResetTime();
             }
-            yield return new WaitForSeconds(1f);
+        }
 
-            if (_currentTime <= 0)
+        private void DisplayTimer()
+        {
+            if (((int)_currentTime).ToString().Length == 1)
+            {
+                timerText.text = "00:0" + ((int)_currentTime);
+            }
+            else
+            {
+                timerText.text = "00:" + ((int)_currentTime);
+            }
+
+            if (((int)_currentTime) <= 0)
             {
                 LevelSignals.Instance.onTimeUp?.Invoke();
             }
-            else
-            {
-                StartCoroutine(Timer());
-            }
         }
+        //private IEnumerator Timer()
+        //{
+        //    --_currentTime;
+        //    if (_currentTime.ToString().Length == 1)
+        //    {
+        //        timerText.text = "00:0" + _currentTime;
+        //    }
+        //    else
+        //    {
+        //        timerText.text = "00:" + _currentTime;
+        //    }
+        //    yield return new WaitForSeconds(1f);
+
+        //    if (_currentTime <= 0)
+        //    {
+        //        LevelSignals.Instance.onTimeUp?.Invoke();
+        //    }
+        //    else
+        //    {
+        //        StartCoroutine(Timer());
+        //    }
+        //}
 
         private void InitializeScorePoints()
         {
@@ -131,7 +171,8 @@ namespace Managers
                 if (score == _data.BasketCountToWin[_levelId])
                 {
                     LevelSignals.Instance.onTimeUp?.Invoke();
-                    StopAllCoroutines();
+                    _isTimerActivated = false;
+                    //StopAllCoroutines();
                 }
             }
             else if (type.Equals(ScoreTypeEnums.EnemyScore))
@@ -141,7 +182,8 @@ namespace Managers
                 if (score == _data.BasketCountToWin[_levelId])
                 {
                     LevelSignals.Instance.onTimeUp?.Invoke();
-                    StopAllCoroutines();
+                    _isTimerActivated = false;
+                    //StopAllCoroutines();
                 }
             }
         }
@@ -152,12 +194,15 @@ namespace Managers
             scoreText.text = 0.ToString();
             enemyScoreText.text = 0.ToString();
             DeactivateScorePoints();
+            _isTimerActivated = false;
+
         }
         public void OnPlay()
         {
             _currentTime = _data.TimerCount;
-            StartCoroutine(Timer());
+            //StartCoroutine(Timer());
             InitializeScorePoints();
+            _isTimerActivated = true;
         }
 
         private void OnPlayPressed()

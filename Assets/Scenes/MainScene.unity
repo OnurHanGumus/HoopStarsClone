@@ -7130,9 +7130,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3673110769411091637, guid: 8b927b251af101f4d9706497e07fb7e1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3673110769411091638, guid: 8b927b251af101f4d9706497e07fb7e1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3673110769411091639, guid: 8b927b251af101f4d9706497e07fb7e1, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3673110769411091639, guid: 8b927b251af101f4d9706497e07fb7e1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b927b251af101f4d9706497e07fb7e1, type: 3}

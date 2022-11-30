@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CD_Level
   m_EditorClassIdentifier: 
   Data:
-    TimerCount: 15
+    TimerCount: 59
     BasketCountToWin: 030000000500000007000000
     ScorePointsDefaultAlpha: 50
     ScorePointsIncreasedAlpha: 255

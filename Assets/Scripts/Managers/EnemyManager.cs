@@ -65,7 +65,7 @@ namespace Managers
 
         private void UnsubscribeEvents()
         {
-            CoreGameSignals.Instance.onPlayPressed += _movementController.OnPlayPressed;
+            CoreGameSignals.Instance.onPlayPressed -= _movementController.OnPlayPressed;
             CoreGameSignals.Instance.onPlay -= _movementController.OnPlay;
             CoreGameSignals.Instance.onPlay -= OnPlay;
             CoreGameSignals.Instance.onRestartLevel -= _movementController.OnReset;

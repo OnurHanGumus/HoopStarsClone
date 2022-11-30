@@ -17,7 +17,6 @@ public class EnemyMovementController : MonoBehaviour
     private EnemyManager _manager;
     private EnemyData _data;
 
-    private bool _isClicked = false;
     private bool _isNotStarted = true;
 
     private bool _isOnRight = true;
@@ -57,8 +56,6 @@ public class EnemyMovementController : MonoBehaviour
     {
         _rig.velocity = Vector3.zero;
         _rig.AddForce(new Vector3(_data.ForceX * (isTargetOnRight ? 1 : -1), _data.ForceY, 0), ForceMode.Impulse);
-        _isClicked = false;
-
     }
 
     private void ClampControl()
